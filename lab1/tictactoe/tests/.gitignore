@@ -1,0 +1,28 @@
+# Compiled object files
+*.o 
+*.obj
+
+# Executables
+a.out 
+*.exe 
+*.out
+
+# Libraries
+*.lib 
+*.a 
+*.so 
+*.dll
+
+# Debug files
+*.pdb
+
+# VS Code
+.vscode/
+
+# Build directories
+build/ 
+cmake-build-*/
+
+# Mac / Linux junk
+.DS_Store 
+Thumbs.db
