@@ -120,12 +120,19 @@ std::ostream& operator<<(std::ostream& os, const TicTacToe& g) {
 
 std::istream& operator>>(std::istream& is, TicTacToe& g) { 
     std::size_t size; 
-    if (!(is >> size)) return is; 
+    if (!(is >> size)){
+        return is; 
+    }
+
     g.n = size; 
     g.board.assign(size, std::vector<char>(size, ' ')); 
-    for (std::size_t r = 0; r < size; ++r)
-     for (std::size_t c = 0; c < size; ++c) 
-     is >> g.board[r][c]; 
+    for (std::size_t r = 0; r < size; ++r){
+     for (std::size_t c = 0; c < size; ++c) {
+     if(!( is >> g.board[r][c])){
      return is;
      }
+    }
+}
      
+    return is;
+}

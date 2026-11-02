@@ -1,4 +1,5 @@
-#ifndef TICTACTOE_H #define TICTACTOE_H
+#ifndef TICTACTOE_H 
+#define TICTACTOE_H
 #include <vector> 
 #include <iostream>
 class TicTacToe { 
