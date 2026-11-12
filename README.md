@@ -31,3 +31,27 @@ From the polynomial folder:
 g++ Polynomial.cpp polynomial_cli.cpp -o polynomial_app
 
 g++ Polynomial.cpp polynomial_tests.cpp -o polynomial_tests
+
+To compile and run polynomial application:
+
+g++ -std=c++17 -Isrc src/Polynomial.cpp src/Polynomial_cli.cpp -o polynomial_app
+
+./polynomial_app
+
+To compile and run the polynomial tests:
+
+g++ -std=c++17 -Isrc src/Polynomial.cpp tests/Polynomial_tests.cpp -o polynomial_tests
+
+./polynomial_tests
+
+To compile and run tictactoe application:
+
+g++ -std=c++17 -Isrc src/TicTacToe.cpp src/TicTacToe_cli.cpp -o tictactoe_app
+
+./tictactoe_app
+
+To compile and run tictatctoe tests:
+
+g++ -std=c++17 -Isrc src/TicTacToe.cpp tests/TicTacToe_tests.cpp -o tictactoe_tests
+
+./tictactoe_tests
