@@ -27,18 +27,18 @@ jobs:
           g++ -std=c++17 -Wall -Wextra -Wpedantic -Isrc \
             src/Polynomial.cpp src/Polynomial_cli.cpp \
             -o polynomial_app
-        working-directory: lab 1/Polynomial
+        working-directory: lab1/Polynomial
 
       - name: Compile Polynomial tests
         run: |
           g++ -std=c++17 -Wall -Wextra -Wpedantic -Isrc \
             src/Polynomial.cpp tests/Polynomial_tests.cpp \
             -o polynomial_tests
-        working-directory: lab 1/Polynomial
+        working-directory: lab1/Polynomial
 
       - name: Run Polynomial tests
         run: ./polynomial_tests
-        working-directory: lab 1/Polynomial
+        working-directory: lab1/Polynomial
 
   tictactoe:
     name: Tic-Tac-Toe
@@ -53,15 +53,15 @@ jobs:
           g++ -std=c++17 -Wall -Wextra -Wpedantic -Isrc \
             src/TicTacToe.cpp src/TicTacToe_cli.cpp \
             -o tictactoe_app
-        working-directory: lab 1/tictactoe
+        working-directory: lab1/tictactoe
 
       - name: Compile Tic-Tac-Toe tests
         run: |
           g++ -std=c++17 -Wall -Wextra -Wpedantic -Isrc \
             src/TicTacToe.cpp tests/TicTacToe_tests.cpp \
             -o tictactoe_tests
-        working-directory: lab 1/tictactoe
+        working-directory: lab1/tictactoe
 
       - name: Run Tic-Tac-Toe tests
         run: ./tictactoe_tests
-        working-directory: lab 1/tictactoe
+        working-directory: lab1/tictactoe
