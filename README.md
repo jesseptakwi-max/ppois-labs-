@@ -56,3 +56,4 @@ To compile and run tictatctoe tests:
 g++ -std=c++17 -Wall -Wextra -Wpedantic -Isrc src/TicTacToe.cpp tests/TicTacToe_tests.cpp -o tictactoe_tests
 
 ./tictactoe_tests
+./tictactoe_tests

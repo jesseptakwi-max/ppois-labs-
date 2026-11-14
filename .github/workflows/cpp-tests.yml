@@ -1,0 +1,95 @@
+
+name: C++ Lab 1 Build, Tests and Release
+
+on:
+  push:
+    branches:
+      - main
+      - formulate1
+    tags:
+      - 'v*'
+
+  pull_request:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  polynomial:
+    name: Polynomial
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get repository
+        uses: actions/checkout@v4
+
+      - name: Compile Polynomial application
+        run: |
+          g++ -std=c++17 -Wall -Wextra -Wpedantic -Isrc \
+            src/Polynomial.cpp src/Polynomial_cli.cpp \
+            -o polynomial_app
+        working-directory: lab1/Polynomial
+
+      - name: Compile Polynomial tests
+        run: |
+          g++ -std=c++17 -Wall -Wextra -Wpedantic -Isrc \
+            src/Polynomial.cpp tests/Polynomial_tests.cpp \
+            -o polynomial_tests
+        working-directory: lab1/Polynomial
+
+      - name: Run Polynomial tests
+        run: ./polynomial_tests
+        working-directory: lab1/Polynomial
+
+  tictactoe:
+    name: Tic-Tac-Toe
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get repository
+        uses: actions/checkout@v4
+
+      - name: Compile Tic-Tac-Toe application
+        run: |
+          g++ -std=c++17 -Wall -Wextra -Wpedantic -Isrc \
+            src/TicTacToe.cpp src/TicTacToe_cli.cpp \
+            -o tictactoe_app
+        working-directory: lab1/tictactoe
+
+      - name: Compile Tic-Tac-Toe tests
+        run: |
+          g++ -std=c++17 -Wall -Wextra -Wpedantic -Isrc \
+            src/TicTacToe.cpp tests/TicTacToe_tests.cpp \
+            -o tictactoe_tests
+        working-directory: lab1/tictactoe
+
+      - name: Run Tic-Tac-Toe tests
+        run: ./tictactoe_tests
+        working-directory: lab1/tictactoe
+
+  release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+
+    needs:
+      - polynomial
+      - tictactoe
+
+    if: startsWith(github.ref, 'refs/tags/v')
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Get repository
+        uses: actions/checkout@v4
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: PPOIS Labs ${{ github.ref_name }}
+          generate_release_notes: true
