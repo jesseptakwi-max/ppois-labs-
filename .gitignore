@@ -1,16 +1,17 @@
+
 # Compiled object files
-*.o 
+*.o
 *.obj
 
 # Executables
-a.out 
-*.exe 
+a.out
+*.exe
 *.out
 
 # Libraries
-*.lib 
-*.a 
-*.so 
+*.lib
+*.a
+*.so
 *.dll
 
 # Debug files
@@ -20,11 +21,11 @@ a.out
 .vscode/
 
 # Build directories
-build/ 
+build/
 cmake-build-*/
 
 # Mac / Linux junk
-.DS_Store 
+.DS_Store
 Thumbs.db
 
 # Lab 1 compiled applications and tests
@@ -32,6 +33,8 @@ polynomial_app
 polynomial_tests
 tictactoe_app
 tictactoe_tests
+polynomial
+tictactoe
 
 # Coverage files
 *.gcda

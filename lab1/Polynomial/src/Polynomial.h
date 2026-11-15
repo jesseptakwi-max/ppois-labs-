@@ -12,6 +12,7 @@
 #include <vector>
 #include <iostream>
 #include <initializer_list>
+#include <cstddef>
 
 /**
  * @brief Represents a single-variable polynomial.
