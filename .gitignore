@@ -41,3 +41,6 @@ tictactoe
 *.gcno
 *.gcov
 coverage/
+
+# Generated Doxygen documentation
+docs/doxygen/html/
