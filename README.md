@@ -34,6 +34,7 @@ PPOIS Labs/
 │       └── tests/
 │           └── TicTacToe_tests.cpp
 ├── .gitignore
+├── Doxyfile
 └── README.md
 ```
 
@@ -43,14 +44,15 @@ PPOIS Labs/
 - [Catch2 v3](https://github.com/catchorg/Catch2) for unit testing
 - [gcovr](https://gcovr.com/) for code coverage reports
 - `clang-tidy` for static analysis
+- [Doxygen](https://www.doxygen.nl/) for generating HTML documentation
 - Git
 
-### Installing dependencies on macOS
+### Installing Dependencies on macOS
 
 Using Homebrew:
 
 ```bash
-brew install catch2 gcovr
+brew install catch2 gcovr doxygen llvm
 ```
 
 Check the installations:
@@ -58,6 +60,7 @@ Check the installations:
 ```bash
 g++ --version
 gcovr --version
+doxygen --version
 brew info catch2
 ```
 
@@ -75,7 +78,7 @@ The Polynomial application implements single-variable polynomial operations.
 - Compare polynomials.
 - Read and display polynomials using stream operators.
 
-### Build and run
+### Build and Run
 
 Open a terminal in the repository root and run:
 
@@ -97,7 +100,7 @@ Run:
 ./polynomial_app
 ```
 
-### Run unit tests
+### Run Unit Tests
 
 Compile the tests with Catch2:
 
@@ -117,7 +120,7 @@ Run the tests:
 ./polynomial_tests
 ```
 
-### Measure code coverage
+### Measure Code Coverage
 
 Compile the tests with coverage instrumentation:
 
@@ -152,7 +155,7 @@ The Tic-Tac-Toe application implements a configurable console-based game.
 - Reset the game.
 - Display game instructions.
 
-### Build and run
+### Build and Run
 
 From the repository root:
 
@@ -174,7 +177,7 @@ Run:
 ./tictactoe_app
 ```
 
-### Run unit tests
+### Run Unit Tests
 
 Compile the tests with Catch2:
 
@@ -194,7 +197,7 @@ Run the tests:
 ./tictactoe_tests
 ```
 
-### Measure code coverage
+### Measure Code Coverage
 
 Compile the tests with coverage instrumentation:
 
@@ -241,10 +244,12 @@ The GitHub Actions workflow checks coverage independently for:
 
 Latest verified local results:
 
-| Project | Line coverage |
+| Project | Line Coverage |
 |---|---:|
 | Polynomial | 92.0% |
 | Tic-Tac-Toe | 99.3% |
+
+These figures represent the latest verified local test results.
 
 ## Continuous Integration
 
@@ -268,6 +273,30 @@ It performs the following tasks:
 
 The workflow runs on pushes to the configured branches, pull requests targeting `main`, and manual dispatches.
 
+On a version tag (for example, `v1.0.0`), it packages the two CLI binaries into a downloadable Linux x86-64 release archive.
+
+## Doxygen Documentation
+
+Doxygen is used to generate HTML documentation for the Polynomial and Tic-Tac-Toe classes.
+
+Make sure Doxygen is installed on your system.
+
+From the repository root, run:
+
+```bash
+doxygen Doxyfile
+```
+
+Open the generated documentation on macOS:
+
+```bash
+open docs/doxygen/html/index.html
+```
+
+The generated documentation includes descriptions of the classes, constructors, methods, operators, and private helper functions.
+
+Generated HTML documentation is stored in `docs/doxygen/html/` and is excluded from Git tracking because it can be regenerated using the Doxyfile.
+
 ## Technologies
 
 - C++17
@@ -275,4 +304,5 @@ The workflow runs on pushes to the configured branches, pull requests targeting 
 - GCC / Clang
 - gcov / gcovr
 - clang-tidy
+- Doxygen
 - Git and GitHub Actions
