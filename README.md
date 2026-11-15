@@ -33,3 +33,24 @@ g++ -std=c++17 -Wall -Wextra -Wpedantic -Isrc src/TicTacToe.cpp tests/TicTacToe_
 ```
 
 The GitHub Actions workflow builds both CLIs, runs the unit tests, enforces more than 90% line coverage on each domain implementation, and runs `clang-tidy` static analysis. On a version tag (`v1.0.0`, for example), it packages the two CLI binaries into a downloadable Linux x86-64 release archive.
+
+## Doxygen Documentation
+
+Doxygen is used to generate HTML documentation for the Polynomial and Tic-Tac-Toe classes.
+
+Requirements:
+- Doxygen installed on your system.
+
+From the repository root, run:
+
+```bash
+doxygen Doxyfile
+```
+
+Open the generated documentation:
+
+```bash
+open docs/doxygen/html/index.html
+```
+
+The generated documentation includes descriptions of the classes, constructors, methods, operators and private helper functions.
