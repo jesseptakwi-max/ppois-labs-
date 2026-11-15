@@ -113,41 +113,67 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('class_tic_tac_
 </div><!--header-->
 <div class="contents">
 
+<p>Represents a Tic-Tac-Toe game board of configurable size.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_tic_tac_toe_8h_source.html">TicTacToe.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a3197824275a2403b4e906414a0b151ef" id="r_a3197824275a2403b4e906414a0b151ef"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a3197824275a2403b4e906414a0b151ef">TicTacToe</a> (std::size_t size=3)</td></tr>
+<tr class="memdesc:a3197824275a2403b4e906414a0b151ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an empty square board.  <br /></td></tr>
 <tr class="memitem:a341c14c8603d60a93523f657b60a08f9" id="r_a341c14c8603d60a93523f657b60a08f9"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a341c14c8603d60a93523f657b60a08f9">TicTacToe</a> (const <a class="el" href="class_tic_tac_toe.html">TicTacToe</a> &amp;other)</td></tr>
+<tr class="memdesc:a341c14c8603d60a93523f657b60a08f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <br /></td></tr>
 <tr class="memitem:aab5bcbf7d501d8bb11bcb1c3a1512369" id="r_aab5bcbf7d501d8bb11bcb1c3a1512369"><td class="memItemLeft"><a class="el" href="class_tic_tac_toe.html">TicTacToe</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#aab5bcbf7d501d8bb11bcb1c3a1512369">operator=</a> (const <a class="el" href="class_tic_tac_toe.html">TicTacToe</a> &amp;other)</td></tr>
+<tr class="memdesc:aab5bcbf7d501d8bb11bcb1c3a1512369"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy assignment operator.  <br /></td></tr>
 <tr class="memitem:adeab7fcf93aca5e58d1ec215657b0260" id="r_adeab7fcf93aca5e58d1ec215657b0260"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#adeab7fcf93aca5e58d1ec215657b0260">operator==</a> (const <a class="el" href="class_tic_tac_toe.html">TicTacToe</a> &amp;other) const</td></tr>
+<tr class="memdesc:adeab7fcf93aca5e58d1ec215657b0260"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether two boards are equal.  <br /></td></tr>
 <tr class="memitem:a1bcefa7f1da162fdb97527559645b1e2" id="r_a1bcefa7f1da162fdb97527559645b1e2"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a1bcefa7f1da162fdb97527559645b1e2">operator!=</a> (const <a class="el" href="class_tic_tac_toe.html">TicTacToe</a> &amp;other) const</td></tr>
+<tr class="memdesc:a1bcefa7f1da162fdb97527559645b1e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether two boards are different.  <br /></td></tr>
 <tr class="memitem:aa28b3b9057199ce2de092770b547c877" id="r_aa28b3b9057199ce2de092770b547c877"><td class="memItemLeft">std::size_t&#160;</td><td class="memItemRight"><a class="el" href="#aa28b3b9057199ce2de092770b547c877">size</a> () const</td></tr>
+<tr class="memdesc:aa28b3b9057199ce2de092770b547c877"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the side length of the board.  <br /></td></tr>
 <tr class="memitem:a8372ad5510b9c215e9846e548d054e24" id="r_a8372ad5510b9c215e9846e548d054e24"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a8372ad5510b9c215e9846e548d054e24">canPlace</a> (std::size_t r, std::size_t c) const</td></tr>
+<tr class="memdesc:a8372ad5510b9c215e9846e548d054e24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether a mark can be placed in a cell.  <br /></td></tr>
 <tr class="memitem:a08f39d8d8fd3cadafd0f416a3013fd2b" id="r_a08f39d8d8fd3cadafd0f416a3013fd2b"><td class="memItemLeft">char&#160;</td><td class="memItemRight"><a class="el" href="#a08f39d8d8fd3cadafd0f416a3013fd2b">operator()</a> (std::size_t r, std::size_t c) const</td></tr>
+<tr class="memdesc:a08f39d8d8fd3cadafd0f416a3013fd2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the content of a cell.  <br /></td></tr>
 <tr class="memitem:a03321a02ace5748ace5fca4b40cdc017" id="r_a03321a02ace5748ace5fca4b40cdc017"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a03321a02ace5748ace5fca4b40cdc017">set</a> (std::size_t r, std::size_t c, char mark)</td></tr>
+<tr class="memdesc:a03321a02ace5748ace5fca4b40cdc017"><td class="mdescLeft">&#160;</td><td class="mdescRight">Places a mark in a cell.  <br /></td></tr>
 <tr class="memitem:a2471d3bf1d4516d14b088acd3e8c7f71" id="r_a2471d3bf1d4516d14b088acd3e8c7f71"><td class="memItemLeft">char&#160;</td><td class="memItemRight"><a class="el" href="#a2471d3bf1d4516d14b088acd3e8c7f71">checkWinner</a> () const</td></tr>
+<tr class="memdesc:a2471d3bf1d4516d14b088acd3e8c7f71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines the winner of the game.  <br /></td></tr>
 <tr class="memitem:a2b63dd83841e18074a94fdcb94a825bb" id="r_a2b63dd83841e18074a94fdcb94a825bb"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a2b63dd83841e18074a94fdcb94a825bb">isFull</a> () const</td></tr>
+<tr class="memdesc:a2b63dd83841e18074a94fdcb94a825bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the board has no free cells.  <br /></td></tr>
 <tr class="memitem:af0b19cda09851415dc20b3fd7defc941" id="r_af0b19cda09851415dc20b3fd7defc941"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#af0b19cda09851415dc20b3fd7defc941">reset</a> ()</td></tr>
+<tr class="memdesc:af0b19cda09851415dc20b3fd7defc941"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the board so a new game can start.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:a4f122acb25e399381a4c114a4fbd7b17" id="r_a4f122acb25e399381a4c114a4fbd7b17"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a4f122acb25e399381a4c114a4fbd7b17">checkRow</a> (std::size_t r, char &amp;w) const</td></tr>
+<tr class="memdesc:a4f122acb25e399381a4c114a4fbd7b17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks a row for a winning line.  <br /></td></tr>
 <tr class="memitem:a79a49837cd7b4dcb201e69e511492578" id="r_a79a49837cd7b4dcb201e69e511492578"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a79a49837cd7b4dcb201e69e511492578">checkCol</a> (std::size_t c, char &amp;w) const</td></tr>
+<tr class="memdesc:a79a49837cd7b4dcb201e69e511492578"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks a column for a winning line.  <br /></td></tr>
 <tr class="memitem:a2ef536124a4a8900d388dc07bf79d80c" id="r_a2ef536124a4a8900d388dc07bf79d80c"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a2ef536124a4a8900d388dc07bf79d80c">checkMainDiag</a> (char &amp;w) const</td></tr>
+<tr class="memdesc:a2ef536124a4a8900d388dc07bf79d80c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks the main diagonal for a winning line.  <br /></td></tr>
 <tr class="memitem:ab9dbcfc9242ed48118041fd4ff84ee5d" id="r_ab9dbcfc9242ed48118041fd4ff84ee5d"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ab9dbcfc9242ed48118041fd4ff84ee5d">checkAntiDiag</a> (char &amp;w) const</td></tr>
+<tr class="memdesc:ab9dbcfc9242ed48118041fd4ff84ee5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks the anti-diagonal for a winning line.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:aa2bc0978fb2c24d462fa6c9d436d7d1b" id="r_aa2bc0978fb2c24d462fa6c9d436d7d1b"><td class="memItemLeft">std::size_t&#160;</td><td class="memItemRight"><a class="el" href="#aa2bc0978fb2c24d462fa6c9d436d7d1b">n</a></td></tr>
+<tr class="memdesc:aa2bc0978fb2c24d462fa6c9d436d7d1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Side length of the board.  <br /></td></tr>
 <tr class="memitem:a9dfe2341ae601004a0c660f1365d9336" id="r_a9dfe2341ae601004a0c660f1365d9336"><td class="memItemLeft">std::vector&lt; std::vector&lt; char &gt; &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a9dfe2341ae601004a0c660f1365d9336">board</a></td></tr>
+<tr class="memdesc:a9dfe2341ae601004a0c660f1365d9336"><td class="mdescLeft">&#160;</td><td class="mdescRight">Grid containing the board's cell contents.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-friends" class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
 <tr class="memitem:ac774f81ac4aceb686e61ee3eeef4e0ab" id="r_ac774f81ac4aceb686e61ee3eeef4e0ab"><td class="memItemLeft">std::ostream &amp;&#160;</td><td class="memItemRight"><a class="el" href="#ac774f81ac4aceb686e61ee3eeef4e0ab">operator&lt;&lt;</a> (std::ostream &amp;os, const <a class="el" href="class_tic_tac_toe.html">TicTacToe</a> &amp;g)</td></tr>
+<tr class="memdesc:ac774f81ac4aceb686e61ee3eeef4e0ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the board to an output stream.  <br /></td></tr>
 <tr class="memitem:a791c3fad72c8545d0b28f682afe22632" id="r_a791c3fad72c8545d0b28f682afe22632"><td class="memItemLeft">std::istream &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a791c3fad72c8545d0b28f682afe22632">operator&gt;&gt;</a> (std::istream &amp;is, <a class="el" href="class_tic_tac_toe.html">TicTacToe</a> &amp;g)</td></tr>
+<tr class="memdesc:a791c3fad72c8545d0b28f682afe22632"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a board from an input stream.  <br /></td></tr>
 </table>
-<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represents a Tic-Tac-Toe game board of configurable size. </p>
+<p>Stores an n x n board and provides operations for placing marks, detecting a winner, checking whether the board is full, and stream input/output. </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a3197824275a2403b4e906414a0b151ef" name="a3197824275a2403b4e906414a0b151ef"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3197824275a2403b4e906414a0b151ef">&#9670;&#160;</a></span>TicTacToe() <span class="overload">[1/2]</span></h2>
 
@@ -171,6 +197,14 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Creates an empty square board. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">size</td><td>Side length of the board (default 3). </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a341c14c8603d60a93523f657b60a08f9" name="a341c14c8603d60a93523f657b60a08f9"></a>
@@ -187,6 +221,14 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Copy constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>Game to copy. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -209,6 +251,16 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Checks whether a mark can be placed in a cell. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">r</td><td>Row index. </td></tr>
+    <tr><td class="paramname">c</td><td>Column index. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the cell is available, otherwise false. </dd></dl>
 
 </div>
 </div>
@@ -234,6 +286,15 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Checks the anti-diagonal for a winning line. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">w</td><td>Receives the winning mark if the diagonal is won. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the anti-diagonal contains a winning line. </dd></dl>
 
 </div>
 </div>
@@ -264,6 +325,16 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Checks a column for a winning line. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname">c</td><td>Column index. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">w</td><td>Receives the winning mark if the column is won. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the column contains a winning line. </dd></dl>
+
 </div>
 </div>
 <a id="a2ef536124a4a8900d388dc07bf79d80c" name="a2ef536124a4a8900d388dc07bf79d80c"></a>
@@ -288,6 +359,15 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Checks the main diagonal for a winning line. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">w</td><td>Receives the winning mark if the diagonal is won. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the main diagonal contains a winning line. </dd></dl>
 
 </div>
 </div>
@@ -318,6 +398,16 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Checks a row for a winning line. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname">r</td><td>Row index. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">w</td><td>Receives the winning mark if the row is won. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the row contains a winning line. </dd></dl>
+
 </div>
 </div>
 <a id="a2471d3bf1d4516d14b088acd3e8c7f71" name="a2471d3bf1d4516d14b088acd3e8c7f71"></a>
@@ -334,6 +424,9 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Determines the winner of the game. </p>
+<dl class="section return"><dt>Returns</dt><dd>'X' or 'O' if a player has won, or a space character if there is no winner. </dd></dl>
 
 </div>
 </div>
@@ -352,6 +445,9 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Checks whether the board has no free cells. </p>
+<dl class="section return"><dt>Returns</dt><dd>true if the board is full, otherwise false. </dd></dl>
+
 </div>
 </div>
 <a id="a1bcefa7f1da162fdb97527559645b1e2" name="a1bcefa7f1da162fdb97527559645b1e2"></a>
@@ -368,6 +464,15 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Checks whether two boards are different. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>Game to compare with. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the boards differ, otherwise false. </dd></dl>
 
 </div>
 </div>
@@ -390,6 +495,16 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Gets the content of a cell. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">r</td><td>Row index. </td></tr>
+    <tr><td class="paramname">c</td><td>Column index. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Character stored in the cell. </dd></dl>
+
 </div>
 </div>
 <a id="aab5bcbf7d501d8bb11bcb1c3a1512369" name="aab5bcbf7d501d8bb11bcb1c3a1512369"></a>
@@ -406,6 +521,15 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Copy assignment operator. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>Game to copy. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Reference to this game. </dd></dl>
 
 </div>
 </div>
@@ -424,6 +548,15 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Checks whether two boards are equal. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>Game to compare with. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the boards are equal, otherwise false. </dd></dl>
+
 </div>
 </div>
 <a id="af0b19cda09851415dc20b3fd7defc941" name="af0b19cda09851415dc20b3fd7defc941"></a>
@@ -440,6 +573,9 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Clears the board so a new game can start. </p>
+<p>The board dimensions remain unchanged. </p>
 
 </div>
 </div>
@@ -467,6 +603,17 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Places a mark in a cell. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">r</td><td>Row index. </td></tr>
+    <tr><td class="paramname">c</td><td>Column index. </td></tr>
+    <tr><td class="paramname">mark</td><td>Mark to place ('X' or 'O').</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Invalid coordinates, occupied cells and invalid marks are ignored. </p>
+
 </div>
 </div>
 <a id="aa28b3b9057199ce2de092770b547c877" name="aa28b3b9057199ce2de092770b547c877"></a>
@@ -483,6 +630,9 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Gets the side length of the board. </p>
+<dl class="section return"><dt>Returns</dt><dd>Board size. </dd></dl>
 
 </div>
 </div>
@@ -514,6 +664,16 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Writes the board to an output stream. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">os</td><td>Output stream. </td></tr>
+    <tr><td class="paramname">g</td><td>Game to print. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Reference to the output stream. </dd></dl>
+
 </div>
 </div>
 <a id="a791c3fad72c8545d0b28f682afe22632" name="a791c3fad72c8545d0b28f682afe22632"></a>
@@ -543,6 +703,16 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Reads a board from an input stream. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">is</td><td>Input stream. </td></tr>
+    <tr><td class="paramname">g</td><td>Game to populate. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Reference to the input stream. </dd></dl>
+
 </div>
 </div>
 <a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
@@ -566,6 +736,8 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Grid containing the board's cell contents. </p>
+
 </div>
 </div>
 <a id="aa2bc0978fb2c24d462fa6c9d436d7d1b" name="aa2bc0978fb2c24d462fa6c9d436d7d1b"></a>
@@ -587,6 +759,8 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Side length of the board. </p>
 
 </div>
 </div>
