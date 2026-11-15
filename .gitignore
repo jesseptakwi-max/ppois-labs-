@@ -26,3 +26,15 @@ cmake-build-*/
 # Mac / Linux junk
 .DS_Store 
 Thumbs.db
+
+# Lab 1 compiled applications and tests
+polynomial_app
+polynomial_tests
+tictactoe_app
+tictactoe_tests
+
+# Coverage files
+*.gcda
+*.gcno
+*.gcov
+coverage/
