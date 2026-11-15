@@ -1,138 +1,273 @@
+
 #include "TicTacToe.h"
 
-TicTacToe::TicTacToe(std::size_t size) 
-: n(size), board(size, std::vector<char>(size, ' ')) {}
+#include <stdexcept>
+#include <utility>
 
-TicTacToe::TicTacToe(const TicTacToe& other) 
-: n(other.n), board(other.board) {}
+// Row proxy implementation.
+
+TicTacToe::Row::Row(std::vector<char>& cells)
+    : cells_(cells) {}
+
+char& TicTacToe::Row::operator[](std::size_t column) {
+    return cells_.at(column);
+}
+
+TicTacToe::ConstRow::ConstRow(const std::vector<char>& cells)
+    : cells_(cells) {}
+
+const char& TicTacToe::ConstRow::operator[](
+    std::size_t column) const {
+    return cells_.at(column);
+}
+
+// Constructors and assignment.
+
+TicTacToe::TicTacToe(std::size_t size)
+    : n(size), board(size, std::vector<char>(size, ' ')) {
+    if (size == 0) {
+        throw std::invalid_argument("Board size must be greater than zero");
+    }
+}
+
+TicTacToe::TicTacToe(const TicTacToe& other)
+    : n(other.n), board(other.board) {}
 
 TicTacToe& TicTacToe::operator=(const TicTacToe& other) {
-     if (this != &other) { 
-        n = other.n; 
-        board = other.board; } 
-        return *this; 
+    if (this != &other) {
+        n = other.n;
+        board = other.board;
     }
 
-bool TicTacToe::operator==(const TicTacToe& other) const { 
-    return n == other.n && board == other.board; 
+    return *this;
 }
 
-bool TicTacToe::operator!=(const TicTacToe& other) const { 
-    return !(*this == other); 
+// Comparison operators.
+
+bool TicTacToe::operator==(const TicTacToe& other) const {
+    return n == other.n && board == other.board;
 }
 
-std::size_t TicTacToe::size() const { 
-    return n; 
+bool TicTacToe::operator!=(const TicTacToe& other) const {
+    return !(*this == other);
 }
 
-bool TicTacToe::canPlace(std::size_t r, std::size_t c) const { 
-    return r < n && c < n && board[r][c] == ' '; 
+// Indexed access.
+
+TicTacToe::Row TicTacToe::operator[](std::size_t row) {
+    return Row(board.at(row));
 }
 
-char TicTacToe::operator()(std::size_t r, std::size_t c) const { 
-    if (r >= n || c >= n) return ' '; 
-    return board[r][c]; 
+TicTacToe::ConstRow TicTacToe::operator[](
+    std::size_t row) const {
+    return ConstRow(board.at(row));
 }
 
-void TicTacToe::set(std::size_t r, std::size_t c, char mark) { 
-    if (canPlace(r, c) && (mark == 'X' || mark == 'O')) { 
-        board[r][c] = mark; } 
+// Board operations.
+
+std::size_t TicTacToe::size() const {
+    return n;
+}
+
+bool TicTacToe::canPlace(
+    std::size_t row, std::size_t column) const {
+    return row < n && column < n &&
+           board[row][column] == ' ';
+}
+
+char TicTacToe::operator()(
+    std::size_t row, std::size_t column) const {
+    if (row >= n || column >= n) {
+        return ' ';
     }
 
-bool TicTacToe::checkRow(std::size_t r, char& w) const { 
-    char first = board[r][0]; 
-    if (first == ' ') return false; 
-    for (std::size_t c = 1; c < n; ++c) { 
-        if (board[r][c] != first) return false;
-     } 
-     w = first; 
-     return true; 
-    }
-
-bool TicTacToe::checkCol(std::size_t c, char& w) const { 
-    char first = board[0][c]; 
-    if (first == ' ') return false; 
-    for (std::size_t r = 1; r < n; ++r) { 
-        if (board[r][c] != first) return false; 
-    } 
-        w = first; 
-        return true; 
-    }
-
-bool TicTacToe::checkMainDiag(char& w) const { 
-    char first = board[0][0]; 
-    if (first == ' ') return false; 
-    for (std::size_t i = 1; i < n; ++i) { 
-        if (board[i][i] != first) return false; 
-    } 
-        w = first; 
-        return true; 
-    }
-
-bool TicTacToe::checkAntiDiag(char& w) const { 
-    char first = board[0][n - 1]; 
-    if (first == ' ') return false; 
-    for (std::size_t i = 1; i < n; ++i) { 
-        if (board[i][n - 1 - i] != first) return false; 
-    } 
-        w = first; 
-        return true; 
-    }
-
-char TicTacToe::checkWinner() const { 
-    char w = ' ';
-
-    for (std::size_t r = 0; r < n; ++r)
-    if (checkRow(r, w)) return w;
-
-
-    for (std::size_t c = 0; c < n; ++c)
-    if (checkCol(c, w)) return w;
-
-
-    if (checkMainDiag(w)) return w;
-    if (checkAntiDiag(w)) return w;
-
-return ' ';
+    return board[row][column];
 }
 
-bool TicTacToe::isFull() const { 
-    for (const auto& row : board) 
-    for (char c : row) 
-    if (c == ' ') return false; 
-    return true; 
-}
-
-void TicTacToe::reset() { 
-    for (auto& row : board) 
-    for (char& c : row) 
-    c = ' '; 
-}
-
-std::ostream& operator<<(std::ostream& os, const TicTacToe& g) { 
-    os << g.n << "\n"; 
-    for (const auto& row : g.board) { 
-        for (char c : row) os << c;
-         os << "\n"; 
-        } 
-        return os; 
-    }
-
-std::istream& operator>>(std::istream& is, TicTacToe& g) { 
-    std::size_t size; 
-    if (!(is >> size)){
-        return is; 
-    }
-
-    g.n = size; 
-    g.board.assign(size, std::vector<char>(size, ' ')); 
-    for (std::size_t r = 0; r < size; ++r){
-     for (std::size_t c = 0; c < size; ++c) {
-     if(!( is >> g.board[r][c])){
-     return is;
-     }
+void TicTacToe::set(
+    std::size_t row, std::size_t column, char mark) {
+    if (canPlace(row, column) &&
+        (mark == 'X' || mark == 'O')) {
+        board[row][column] = mark;
     }
 }
-     
+
+// Winner detection.
+
+bool TicTacToe::checkRow(
+    std::size_t row, char& winner) const {
+    const char first = board[row][0];
+
+    if (first == ' ') {
+        return false;
+    }
+
+    for (std::size_t column = 1; column < n; ++column) {
+        if (board[row][column] != first) {
+            return false;
+        }
+    }
+
+    winner = first;
+    return true;
+}
+
+bool TicTacToe::checkCol(
+    std::size_t column, char& winner) const {
+    const char first = board[0][column];
+
+    if (first == ' ') {
+        return false;
+    }
+
+    for (std::size_t row = 1; row < n; ++row) {
+        if (board[row][column] != first) {
+            return false;
+        }
+    }
+
+    winner = first;
+    return true;
+}
+
+bool TicTacToe::checkMainDiag(char& winner) const {
+    const char first = board[0][0];
+
+    if (first == ' ') {
+        return false;
+    }
+
+    for (std::size_t i = 1; i < n; ++i) {
+        if (board[i][i] != first) {
+            return false;
+        }
+    }
+
+    winner = first;
+    return true;
+}
+
+bool TicTacToe::checkAntiDiag(char& winner) const {
+    const char first = board[0][n - 1];
+
+    if (first == ' ') {
+        return false;
+    }
+
+    for (std::size_t i = 1; i < n; ++i) {
+        if (board[i][n - 1 - i] != first) {
+            return false;
+        }
+    }
+
+    winner = first;
+    return true;
+}
+
+char TicTacToe::checkWinner() const {
+    char winner = ' ';
+
+    for (std::size_t row = 0; row < n; ++row) {
+        if (checkRow(row, winner)) {
+            return winner;
+        }
+    }
+
+    for (std::size_t column = 0; column < n; ++column) {
+        if (checkCol(column, winner)) {
+            return winner;
+        }
+    }
+
+    if (checkMainDiag(winner)) {
+        return winner;
+    }
+
+    if (checkAntiDiag(winner)) {
+        return winner;
+    }
+
+    return ' ';
+}
+
+// Board state operations.
+
+bool TicTacToe::isFull() const {
+    for (const auto& row : board) {
+        for (char cell : row) {
+            if (cell == ' ') {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
+void TicTacToe::reset() {
+    for (auto& row : board) {
+        for (char& cell : row) {
+            cell = ' ';
+        }
+    }
+}
+
+// Stream output.
+
+std::ostream& operator<<(
+    std::ostream& os, const TicTacToe& game) {
+    os << game.n << '\n';
+
+    for (const auto& row : game.board) {
+        for (char cell : row) {
+            os << (cell == ' ' ? '.' : cell);
+        }
+
+        os << '\n';
+    }
+
+    return os;
+}
+
+// Stream input.
+
+std::istream& operator>>(
+    std::istream& is, TicTacToe& game) {
+    std::size_t size;
+
+    if (!(is >> size)) {
+        return is;
+    }
+
+    if (size == 0) {
+        is.setstate(std::ios::failbit);
+        return is;
+    }
+
+    std::vector<std::vector<char>> newBoard(
+        size, std::vector<char>(size, ' '));
+
+    for (std::size_t row = 0; row < size; ++row) {
+        for (std::size_t column = 0; column < size; ++column) {
+            char cell;
+
+            if (!(is >> cell)) {
+                return is;
+            }
+
+            if (cell == '.') {
+                newBoard[row][column] = ' ';
+            } else if (cell == 'X' || cell == 'O') {
+                newBoard[row][column] = cell;
+            } else {
+                is.setstate(std::ios::failbit);
+                return is;
+            }
+        }
+    }
+
+    game.n = size;
+    game.board = std::move(newBoard);
+
     return is;
 }

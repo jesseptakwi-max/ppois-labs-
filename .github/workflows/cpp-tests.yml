@@ -1,3 +1,4 @@
+
 name: C++ Lab 1 Build, Tests, Coverage and Release
 
 on:
@@ -5,6 +6,7 @@ on:
     branches:
       - main
       - construct1
+      - testing-and-coverage
     tags:
       - 'v*'
 
@@ -20,16 +22,16 @@ permissions:
 jobs:
   polynomial:
     name: Polynomial - build, tests, coverage and static analysis
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Check out repository
         uses: actions/checkout@v7
 
-      - name: Install coverage and static-analysis tools
+      - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install --yes gcovr clang-tidy
+          sudo apt-get install --yes catch2 gcovr clang-tidy
 
       - name: Compile Polynomial application
         working-directory: lab1/Polynomial
@@ -41,19 +43,21 @@ jobs:
       - name: Compile Polynomial tests with coverage
         working-directory: lab1/Polynomial
         run: |
-          g++ -std=c++17 -Wall -Wextra -Wpedantic --coverage -O0 -g -Isrc \
+          g++ -std=c++17 -Wall -Wextra -Wpedantic \
+            --coverage -O0 -g -Isrc \
             src/Polynomial.cpp tests/Polynomial_tests.cpp \
+            -lCatch2Main -lCatch2 \
             -o polynomial_tests
 
       - name: Run Polynomial tests
         working-directory: lab1/Polynomial
         run: ./polynomial_tests
 
-      - name: Check Polynomial line coverage (minimum 90%)
+      - name: Check Polynomial line coverage (strictly above 90%)
         working-directory: lab1/Polynomial
         run: |
           gcovr --root . --filter 'src/Polynomial\.cpp$' \
-            --fail-under-line 90 --print-summary
+            --fail-under-line 90.01 --print-summary
 
       - name: Run Polynomial static analysis
         working-directory: lab1/Polynomial
@@ -65,16 +69,16 @@ jobs:
 
   tictactoe:
     name: Tic-Tac-Toe - build, tests, coverage and static analysis
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Check out repository
         uses: actions/checkout@v7
 
-      - name: Install coverage and static-analysis tools
+      - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install --yes gcovr clang-tidy
+          sudo apt-get install --yes catch2 gcovr clang-tidy
 
       - name: Compile Tic-Tac-Toe application
         working-directory: lab1/tictactoe
@@ -86,19 +90,21 @@ jobs:
       - name: Compile Tic-Tac-Toe tests with coverage
         working-directory: lab1/tictactoe
         run: |
-          g++ -std=c++17 -Wall -Wextra -Wpedantic --coverage -O0 -g -Isrc \
+          g++ -std=c++17 -Wall -Wextra -Wpedantic \
+            --coverage -O0 -g -Isrc \
             src/TicTacToe.cpp tests/TicTacToe_tests.cpp \
+            -lCatch2Main -lCatch2 \
             -o tictactoe_tests
 
       - name: Run Tic-Tac-Toe tests
         working-directory: lab1/tictactoe
         run: ./tictactoe_tests
 
-      - name: Check Tic-Tac-Toe line coverage (minimum 90%)
+      - name: Check Tic-Tac-Toe line coverage (strictly above 90%)
         working-directory: lab1/tictactoe
         run: |
           gcovr --root . --filter 'src/TicTacToe\.cpp$' \
-            --fail-under-line 90 --print-summary
+            --fail-under-line 90.01 --print-summary
 
       - name: Run Tic-Tac-Toe static analysis
         working-directory: lab1/tictactoe
@@ -110,7 +116,7 @@ jobs:
 
   release:
     name: Package and publish Linux applications
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs:
       - polynomial
       - tictactoe

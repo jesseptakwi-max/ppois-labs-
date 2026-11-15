@@ -1,76 +1,195 @@
+
 #include "TicTacToe.h"
 
-#include <cassert>
+#include <catch2/catch_test_macros.hpp>
 #include <sstream>
+#include <stdexcept>
 
-int main() {
+TEST_CASE("TicTacToe construction and basic properties") {
     TicTacToe game(3);
-    assert(game.size() == 3);
-    assert(game.checkWinner() == ' ');
-    assert(!game.isFull());
-    assert(game.canPlace(0, 0));
-    assert(!game.canPlace(3, 0));
-    assert(!game.canPlace(0, 3));
-    assert(game(3, 0) == ' ');
+
+    REQUIRE(game.size() == 3);
+    REQUIRE(game.checkWinner() == ' ');
+    REQUIRE_FALSE(game.isFull());
+    REQUIRE(game.canPlace(0, 0));
+    REQUIRE_FALSE(game.canPlace(3, 0));
+    REQUIRE_FALSE(game.canPlace(0, 3));
+    REQUIRE(game(3, 0) == ' ');
+
+    REQUIRE_THROWS_AS(TicTacToe(0), std::invalid_argument);
+}
+
+TEST_CASE("TicTacToe placing marks and occupied cells") {
+    TicTacToe game(3);
 
     game.set(0, 0, 'X');
     game.set(0, 1, 'X');
     game.set(0, 2, 'X');
-    assert(game.checkWinner() == 'X');
-    assert(!game.canPlace(0, 0));
-    game.set(1, 1, 'Z'); // invalid marks are ignored
-    assert(game(1, 1) == ' ');
 
-    game.reset();
-    assert(game.checkWinner() == ' ');
+    REQUIRE(game.checkWinner() == 'X');
+    REQUIRE_FALSE(game.canPlace(0, 0));
+
+    game.set(1, 1, 'Z');
+    REQUIRE(game(1, 1) == ' ');
+}
+
+TEST_CASE("TicTacToe mutable and const indexing") {
+    TicTacToe game(3);
+
+    game[0][0] = 'X';
+    game[0][1] = 'O';
+
+    REQUIRE(game[0][0] == 'X');
+    REQUIRE(game[0][1] == 'O');
+    REQUIRE(game(0, 0) == 'X');
+
+    const TicTacToe& constGame = game;
+
+    REQUIRE(constGame[0][0] == 'X');
+    REQUIRE(constGame[0][1] == 'O');
+}
+
+TEST_CASE("TicTacToe indexing rejects invalid positions") {
+    TicTacToe game(3);
+
+    REQUIRE_THROWS_AS(game[3][0], std::out_of_range);
+    REQUIRE_THROWS_AS(game[0][3], std::out_of_range);
+}
+
+TEST_CASE("TicTacToe detects row winners") {
+    TicTacToe game(3);
+
+    game.set(0, 0, 'X');
+    game.set(0, 1, 'X');
+    game.set(0, 2, 'X');
+
+    REQUIRE(game.checkWinner() == 'X');
+}
+
+TEST_CASE("TicTacToe detects column winners") {
+    TicTacToe game(3);
+
     game.set(0, 0, 'O');
     game.set(1, 0, 'O');
     game.set(2, 0, 'O');
-    assert(game.checkWinner() == 'O'); // column
 
-    game.reset();
+    REQUIRE(game.checkWinner() == 'O');
+}
+
+TEST_CASE("TicTacToe detects main diagonal winners") {
+    TicTacToe game(3);
+
     game.set(0, 0, 'X');
     game.set(1, 1, 'X');
     game.set(2, 2, 'X');
-    assert(game.checkWinner() == 'X'); // main diagonal
 
-    game.reset();
+    REQUIRE(game.checkWinner() == 'X');
+}
+
+TEST_CASE("TicTacToe detects anti-diagonal winners") {
+    TicTacToe game(3);
+
     game.set(0, 2, 'O');
     game.set(1, 1, 'O');
     game.set(2, 0, 'O');
-    assert(game.checkWinner() == 'O'); // anti-diagonal
 
-    game.reset();
+    REQUIRE(game.checkWinner() == 'O');
+}
+
+TEST_CASE("TicTacToe copying and assignment") {
+    TicTacToe game(3);
     game.set(0, 0, 'X');
+
     TicTacToe copied(game);
-    assert(copied == game);
+    REQUIRE(copied == game);
+
     TicTacToe assigned(2);
     assigned = game;
-    assert(assigned == game);
+    REQUIRE(assigned == game);
+
     TicTacToe* sameObject = &assigned;
     assigned = *sameObject;
-    assert(assigned == game);
-    assert(assigned != TicTacToe(2));
+    REQUIRE(assigned == game);
 
+    REQUIRE(assigned != TicTacToe(2));
+}
+
+TEST_CASE("TicTacToe full board and reset") {
     TicTacToe full(2);
+
     full.set(0, 0, 'X');
     full.set(0, 1, 'O');
     full.set(1, 0, 'O');
     full.set(1, 1, 'X');
-    assert(full.isFull());
-    assert(full.checkWinner() == 'X');
+
+    REQUIRE(full.isFull());
+    REQUIRE(full.checkWinner() == 'X');
+
     full.reset();
-    assert(!full.isFull());
+
+    REQUIRE_FALSE(full.isFull());
+    REQUIRE(full.checkWinner() == ' ');
+}
+
+TEST_CASE("TicTacToe detects a draw") {
+    TicTacToe draw(3);
+
+    draw.set(0, 0, 'X');
+    draw.set(0, 1, 'O');
+    draw.set(0, 2, 'X');
+    draw.set(1, 0, 'X');
+    draw.set(1, 1, 'O');
+    draw.set(1, 2, 'O');
+    draw.set(2, 0, 'O');
+    draw.set(2, 1, 'X');
+    draw.set(2, 2, 'X');
+
+    REQUIRE(draw.isFull());
+    REQUIRE(draw.checkWinner() == ' ');
+}
+
+TEST_CASE("TicTacToe stream input and output") {
+    TicTacToe game(3);
+    game.set(0, 0, 'X');
 
     std::stringstream serialized;
     serialized << game;
+
     TicTacToe restored(1);
     serialized >> restored;
-    assert(restored == game);
 
-    std::stringstream invalidInput("not-a-size");
-    invalidInput >> restored;
-    assert(invalidInput.fail());
+    REQUIRE(restored == game);
+}
 
-    return 0;
+TEST_CASE("TicTacToe rejects incomplete input without changing the board") {
+    TicTacToe unchanged(2);
+    unchanged.set(0, 0, 'O');
+
+    std::stringstream incomplete("2 X.");
+    incomplete >> unchanged;
+
+    REQUIRE(incomplete.fail());
+    REQUIRE(unchanged.size() == 2);
+    REQUIRE(unchanged[0][0] == 'O');
+}
+
+TEST_CASE("TicTacToe rejects invalid cell characters") {
+    TicTacToe unchanged(2);
+    unchanged.set(0, 0, 'O');
+
+    std::stringstream invalidCell("2 XZ....");
+    invalidCell >> unchanged;
+
+    REQUIRE(invalidCell.fail());
+    REQUIRE(unchanged[0][0] == 'O');
+}
+
+TEST_CASE("TicTacToe rejects invalid board sizes in stream input") {
+    TicTacToe unchanged(2);
+
+    std::stringstream invalidSize("0");
+    invalidSize >> unchanged;
+
+    REQUIRE(invalidSize.fail());
+    REQUIRE(unchanged.size() == 2);
 }
